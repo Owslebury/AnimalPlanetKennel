@@ -5,6 +5,11 @@ public class Dog extends Animal{
     private ArrayList<String> kindsOfFoodEaten;
     public Dog(String name, boolean share, String food,
                int mealsPerDay){
+        Name = name;
+        originalOwners = new ArrayList<Owner>();
+        this.canShare = share;
+        this.favFood = food;
+        this.foodPerDay = mealsPerDay;
         likesBones = true;
         sharesRuns = false;
     }

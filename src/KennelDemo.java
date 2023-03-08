@@ -86,11 +86,11 @@ public class KennelDemo {
     }
 
     private void printMenu() {
-        System.out.println("1 -  add a new Cat ");
+        System.out.println("1 -  add a new Animal ");
         System.out.println("2 -  set up Kennel name");
-        System.out.println("3 -  display all cats");
-        System.out.println("4 -  search for a cat");
-        System.out.println("5 -  remove a cat");
+        System.out.println("3 -  display all animals");
+        System.out.println("4 -  search for an animal");
+        System.out.println("5 -  remove an animal");
         System.out.println("6 -  set kennel capacity");
         System.out.println("q - Quit");
     }
