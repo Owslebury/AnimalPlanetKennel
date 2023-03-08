@@ -39,6 +39,8 @@ public class Cat extends Animal{
 		this.canShare = share;
 		this.favFood = food;
 		this.foodPerDay = mealsPerDay;
+		likesBones = false;
+
 	}
 
 	public String getName() {

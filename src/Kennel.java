@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Kennel {
     private String name;
     private ArrayList<Cat> cats;
+    private ArrayList<Dog> dogs;
     private int nextFreeLocation;
     private int capacity;
 
@@ -141,14 +142,14 @@ public class Kennel {
      *
      * @return An array of the correct size
      */
-    public Cat[] obtainAllAnimals() {
+    public Animal[] obtainAllAnimals() {
 
         // ENTER CODE HERE
         // (POSSIBLY CHANGE SOME, YOU MAY CHANGE THE SIGNATURE TO DEAL
         // WITH ALL KINDS OF ANIMALS: CATS AND DOGS)
         // SEE Cat.getOriginalOwners METHOD FOR SIMILAR CODE
 
-        Cat[] result = null;
+        Animal[] result = null;
         return result;
     }
 
