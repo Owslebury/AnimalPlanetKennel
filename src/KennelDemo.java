@@ -60,7 +60,7 @@ public class KennelDemo {
             response = scan.nextLine().toUpperCase();
             switch (response) {
                 case "1":
-                    admitCat();
+                    admitAnimal();
                     break;
                 case "2":
                     changeKennelName();
@@ -69,10 +69,10 @@ public class KennelDemo {
                     printAll();
                     break;
                 case "4":
-                    searchForCat();
+                    searchForAnimal();
                     break;
                 case "5":
-                    removeCat();
+                    removeAnimal();
                     break;
                 case "6":
                     setKennelCapacity();
@@ -120,14 +120,14 @@ public class KennelDemo {
         }
     }
 
-    private void removeCat() {
+    private void removeAnimal() {
         System.out.println("which cat do you want to remove");
         String cattoberemoved;
         cattoberemoved = scan.nextLine();
         kennel.removeCat(cattoberemoved);
     }
 
-    private void searchForCat() {
+    private void searchForAnimal() {
         System.out.println("which cat do you want to search for");
         String name = scan.nextLine();
         Cat cat = kennel.search(name);
@@ -143,7 +143,7 @@ public class KennelDemo {
         kennel.setName(name);
     }
 
-    private void admitCat() {
+    private void admitAnimal() {
 		boolean sr = false;
 		System.out
 				.println("enter on separate lines: name, owner-name, owner-phone, shares runs?, favourite food, number of times fed");

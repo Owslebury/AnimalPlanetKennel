@@ -149,7 +149,14 @@ public class Kennel {
         // WITH ALL KINDS OF ANIMALS: CATS AND DOGS)
         // SEE Cat.getOriginalOwners METHOD FOR SIMILAR CODE
 
-        Animal[] result = null;
+        /**
+         * Returns combination of both the cats and dogs arraylists
+         */
+        Animal[] result = new Animal[cats.size()+dogs.size()];
+        ArrayList<Animal> combinedList = new ArrayList<>();
+        combinedList.addAll(cats);
+        combinedList.addAll(dogs);
+        result = combinedList.toArray(result);
         return result;
     }
 
