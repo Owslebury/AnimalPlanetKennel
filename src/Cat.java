@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Chris Loftus and Faisal Rezwan
  * @version 3 (20th February 2023)
  */
-public class Cat {
+public class Cat extends Animal{
 
 	private ArrayList<Owner> originalOwners;
 	private boolean canShare;
@@ -163,9 +163,14 @@ public class Cat {
 	 * A basic implementation to just return all the data in string form
 	 */
 	public String toString() {
-		return "Cat name: " + catName + "\n"
-				+ "\nOriginal Owner(s) with phone: " + originalOwners + "\n"
-				+ "\nFood per day: " + " times\n";
+		StringBuilder sb = new StringBuilder();
+		 sb.append("Cat{name=").append(catName)
+				.append(", Original Owner(s) with phone: ").append(originalOwners)
+				.append(", Food per day: ").append(" times");
+		 return sb.toString();
+		//return "Cat name: " + catName + "\n"
+				//+ "\nOriginal Owner(s) with phone: " + originalOwners + "\n"
+				// + "\nFood per day: " + " times\n";
 	}
 
 }

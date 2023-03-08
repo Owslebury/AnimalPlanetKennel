@@ -162,10 +162,15 @@ public class Kennel {
 
         // ENTER CODE HERE (POSSIBLY CHANGE SOME, YOU MAY CHANGE THE SIGNATURE TO DEAL
         // WITH ALL KINDS OF ANIMALS: CATS AND DOGS)
+        for (Cat item: cats){
+            if (item.getName().equals(name)){
+                return item;
+            }
+        }
+        return null;
+        //Cat result = null;
 
-        Cat result = null;
-
-        return result;
+        //return result;
     }
 
     /**
