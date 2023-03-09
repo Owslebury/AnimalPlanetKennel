@@ -122,17 +122,17 @@ public class KennelDemo {
 
     private void removeAnimal() {
         System.out.println("which cat do you want to remove");
-        String cattoberemoved;
-        cattoberemoved = scan.nextLine();
-        kennel.removeCat(cattoberemoved);
+        String animalToBeRemoved;
+        animalToBeRemoved = scan.nextLine();
+        kennel.removeAnimal(animalToBeRemoved);
     }
 
     private void searchForAnimal() {
         System.out.println("which cat do you want to search for");
         String name = scan.nextLine();
-        Cat cat = kennel.search(name);
-        if (cat != null) {
-            System.out.println(cat.toString());
+        Animal animal = kennel.search(name);
+        if (animal != null) {
+            System.out.println(animal.toString());
         } else {
             System.out.println("Could not find cat: " + name);
         }
@@ -168,7 +168,7 @@ public class KennelDemo {
             newCat.addOriginalOwner(o);
         }
 
-        kennel.addCat(newCat);
+        kennel.addAnimal(newCat);
 	}
 
     private ArrayList<Owner> getOwners() {

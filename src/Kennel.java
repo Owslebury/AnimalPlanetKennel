@@ -10,8 +10,10 @@ import java.util.Scanner;
  */
 public class Kennel {
     private String name;
-    private ArrayList<Cat> cats;
-    private ArrayList<Dog> dogs;
+    /**
+     * Arraylist was changed from cat to Animal to be generic for both cat and dog classes
+     */
+    ArrayList<Animal> animalList = new ArrayList<Animal>();
     private int nextFreeLocation;
     private int capacity;
 
@@ -25,12 +27,12 @@ public class Kennel {
     /**
      * Create a kennel
      *
-     * @param maxNoCats The capacity of the kennel
+     * @param maxNoAnimals The capacity of the kennel
      */
-    public Kennel(int maxNoCats) {
+    public Kennel(int maxNoAnimals) {
         nextFreeLocation = 0; // no Cats in collection at start
-        capacity = maxNoCats;
-        cats = new ArrayList<Cat>(capacity); // set up default. This can
+        capacity = maxNoAnimals;
+        animalList = new ArrayList<Animal>(capacity); // set up default. This can
         // actually be exceeded
         // when using ArrayList but we
         // won't allow that
@@ -89,16 +91,16 @@ public class Kennel {
     /**
      * Enables a user to add a Cat to the Kennel
      *
-     * @param theCat A new cat to home
+     * @param animal A new animal to home
      */
-    public void addCat(Cat theCat) {
+    public void addAnimal(Animal animal) {
         if (nextFreeLocation >= capacity) {
             System.out.println("Sorry kennel is full - cannot add team");
             return;
         }
         // we add in the position indexed by nextFreeLocation
         // This starts at zero
-        cats.add(theCat);
+        animalList.add(animal);
 
         // now increment index ready for next one
         nextFreeLocation = nextFreeLocation + 1;
@@ -109,16 +111,16 @@ public class Kennel {
      *
      * @param who The cat to remove
      */
-    public void removeCat(String who) {
-        Cat which = null;
+    public void removeAnimal(String who) {
+        Animal which = null;
         // Search for the cat by name
-        for (Cat c : cats) {
+        for (Animal c : animalList) {
             if (who.equals(c.getName())) {
                 which = c;
             }
         }
         if (which != null) {
-            cats.remove(which); // Requires that Cat has an equals method
+            animalList.remove(which); // Requires that Cat has an equals method
             System.out.println("removed " + who);
             nextFreeLocation = nextFreeLocation - 1;
         } else {
@@ -131,7 +133,7 @@ public class Kennel {
      */
     public String toString() {
         String results = "Data in Kennel " + name + " is: \n";
-        for (Cat c : cats) {
+        for (Animal c : animalList) {
             results = results + c.toString() + "\n";
         }
         return results;
@@ -152,10 +154,9 @@ public class Kennel {
         /**
          * Returns combination of both the cats and dogs arraylists
          */
-        Animal[] result = new Animal[cats.size()+dogs.size()];
+        Animal[] result = new Animal[animalList.size()];
         ArrayList<Animal> combinedList = new ArrayList<>();
-        combinedList.addAll(cats);
-        combinedList.addAll(dogs);
+        combinedList.addAll(animalList);
         result = combinedList.toArray(result);
         return result;
     }
@@ -166,11 +167,11 @@ public class Kennel {
      * @param name The name of the inmate
      * @return The inmate or else null if not found
      */
-    public Cat search(String name) {
+    public Animal search(String name) {
 
         // ENTER CODE HERE (POSSIBLY CHANGE SOME, YOU MAY CHANGE THE SIGNATURE TO DEAL
         // WITH ALL KINDS OF ANIMALS: CATS AND DOGS)
-        for (Cat item: cats){
+        for (Animal item: animalList){
             if (item.getName().equals(name)){
                 return item;
             }
@@ -206,9 +207,9 @@ public class Kennel {
             capacity = infile.nextInt();
 
             while (infile.hasNext()) {
-                Cat cat = new Cat();
-                cat.load(infile);
-                this.addCat(cat);
+                Animal animal = new Animal();
+                animal.load(infile);
+                this.addAnimal(animal);
             }
         }
     }
@@ -230,7 +231,7 @@ public class Kennel {
 
             outfile.println(name);
             outfile.println(capacity);
-            for (Cat c : cats) {
+            for (Animal c : animalList) {
                 c.save(outfile);
             }
         }
