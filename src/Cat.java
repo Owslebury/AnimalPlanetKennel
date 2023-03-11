@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 /**
  * To support an individual cat
  * @author Chris Loftus and Faisal Rezwan
@@ -11,7 +12,10 @@ import java.util.Scanner;
 public class Cat extends Animal{
 	/**
 	 * Default constructor
+	 *
+	 * Share runs is only relevant to cats
 	 */
+	protected Boolean sharesRuns;
 	public Cat(){
 		this("unknown", false, "unknown", 1);
 	}

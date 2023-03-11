@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,10 +25,16 @@ public class KennelDemo {
      * is in this class. We don't want this class to be used by any other class.
      */
     private KennelDemo() {
+        File file;
         scan = new Scanner(System.in);
         System.out.print("Please enter the filename of kennel information: ");
         filename = scan.nextLine();
-
+        file = new File(filename);
+        do{
+            System.out.println("File does not exist, please enter a new filename: ");
+            filename = scan.nextLine();
+            file = new File(filename);
+        }while (!file.exists());
         kennel = new Kennel();
     }
 

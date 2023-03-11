@@ -12,7 +12,6 @@ public class Dog extends Animal{
         this.foodPerDay = mealsPerDay;
         setAnimal("Dog");
         likesBones = true;
-        sharesRuns = false;
     }
 
 }

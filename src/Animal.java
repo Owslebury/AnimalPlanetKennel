@@ -10,7 +10,7 @@ public class Animal {
     protected String favFood;
     protected int foodPerDay;
     protected Boolean likesBones;
-    protected Boolean sharesRuns;
+
 
     /**
      * Gets the name of the type of animal
