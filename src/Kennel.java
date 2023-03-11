@@ -252,4 +252,12 @@ public class Kennel {
 
         Collections.sort(animalList, animalNameComparator);
     }
+    public boolean hasAnimal(String animalName){
+        if (animalList.contains(animalName)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

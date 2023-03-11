@@ -30,11 +30,11 @@ public class KennelDemo {
         System.out.print("Please enter the filename of kennel information: ");
         filename = scan.nextLine();
         file = new File(filename);
-        do{
+        while (file.exists() == false){
             System.out.println("File does not exist, please enter a new filename: ");
             filename = scan.nextLine();
             file = new File(filename);
-        }while (!file.exists());
+        }
         kennel = new Kennel();
     }
 
@@ -65,6 +65,10 @@ public class KennelDemo {
             System.out.println("What would you like to do:");
             scan = new Scanner(System.in);
             response = scan.nextLine().toUpperCase();
+            while(response.matches("[1-6Q]") == false) {
+                System.out.println("Input is invalid, please enter 1-6 or Q");
+                response = scan.nextLine().toUpperCase();
+            }
             switch (response) {
                 case "1":
                     admitAnimal();
@@ -86,8 +90,6 @@ public class KennelDemo {
                     break;
                 case "Q":
                     break;
-                default:
-                    System.out.println("Try again");
             }
         } while (!(response.equals("Q")));
     }
@@ -103,11 +105,19 @@ public class KennelDemo {
     }
 
     private void setKennelCapacity() {
-        System.out.print("Enter max number of cats: ");
-        int max = scan.nextInt();
-        scan.nextLine();
+        int max = 0;
+        while (true) {
+            try {
+                System.out.print("Enter max number of cats: ");
+                max = Integer.parseInt(scan.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter max number of cats: ");
+            }
+        }
         kennel.setCapacity(max);
     }
+
 
     /*
      * printAll() method runs from the main and prints status
@@ -132,7 +142,12 @@ public class KennelDemo {
         System.out.println("which cat do you want to remove");
         String animalToBeRemoved;
         animalToBeRemoved = scan.nextLine();
-        kennel.removeAnimal(animalToBeRemoved);
+        if (kennel.hasAnimal(animalToBeRemoved)== false){
+            System.out.println("Kennel does not contain this animal");
+        }
+        else{
+            kennel.removeAnimal(animalToBeRemoved);
+        }
     }
 
     private void searchForAnimal() {
@@ -152,50 +167,71 @@ public class KennelDemo {
     }
 
     private void admitAnimal() {
-		boolean sr = false;
+        Scanner scan = new Scanner(System.in);
+        boolean sr = false;
         System.out.println("What kind of animal are you adding, car or dog? (C/D)");
 
-        String animal = scan.nextLine();
+        String animal;
         do {
-            System.out.println("You entered " + animal);
-            System.out.print("Please enter C or D: ");
-            animal = scan.nextLine(); // Convert input to uppercase to simplify comparison
-        } while (!animal.toUpperCase().equals("C") && !animal.toUpperCase().equals("D"));
-		System.out
-				.println("enter on separate lines: name, owner-name, owner-phone, shares runs?, favourite food, number of times fed");
-		String name = scan.nextLine();
-		ArrayList<Owner> owners = getOwners();
-		System.out.println("Can it share a run? (Y/N)");
-		String sharesRuns;
-		sharesRuns = scan.nextLine().toUpperCase();
-		if (sharesRuns.equals("Y")) {
-			sr = true;
-		}
-		System.out.println("What is its favourite food?");
-		String fav;
-		fav = scan.nextLine();
-		System.out.println("How many times is it fed a day? (as a number)");
-		int numTimes;
-		numTimes = scan.nextInt(); // This can be improved (InputMismatchException?)
-		scan.nextLine();
-        switch (animal.toUpperCase()){
+            animal = scan.nextLine().toUpperCase();
+            if (!animal.equals("C") && !animal.equals("D")) {
+                System.out.print("Invalid input. Please enter C or D: ");
+            }
+        } while (!animal.equals("C") && !animal.equals("D"));
+
+        System.out.println("Enter on separate lines: name, owner-name, owner-phone, shares runs?, favourite food, number of times fed");
+        String name = scan.nextLine();
+        String ownerName = scan.nextLine();
+        String ownerPhone = scan.nextLine();
+
+        System.out.println("Can it share a run? (Y/N)");
+        String sharesRuns;
+        do {
+            sharesRuns = scan.nextLine().toUpperCase();
+            if (!sharesRuns.equals("Y") && !sharesRuns.equals("N")) {
+                System.out.print("Invalid input. Please enter Y or N: ");
+            }
+        } while (!sharesRuns.equals("Y") && !sharesRuns.equals("N"));
+
+        if (sharesRuns.equals("Y")) {
+            sr = true;
+        }
+
+        System.out.println("What is its favourite food?");
+        String fav = scan.nextLine();
+
+        System.out.println("How many times is it fed a day? (as a number)");
+        int numTimes;
+        while (true) {
+            try {
+                numTimes = scan.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scan.next();
+            }
+        }
+        scan.nextLine();
+
+        ArrayList<Owner> owners = getOwners();
+        switch (animal) {
             case "C":
                 Cat newCat = new Cat(name, sr, fav, numTimes);
-                for(Owner o: owners){
+                for (Owner o : owners) {
                     newCat.addOriginalOwner(o);
                 }
                 kennel.addAnimal(newCat);
                 break;
             case "D":
                 Dog newDog = new Dog(name, sr, fav, numTimes);
-                for(Owner o: owners){
+                for (Owner o : owners) {
                     newDog.addOriginalOwner(o);
                 }
                 kennel.addAnimal(newDog);
                 break;
         }
+    }
 
-	}
 
     private ArrayList<Owner> getOwners() {
         ArrayList<Owner> owners = new ArrayList<Owner>();
