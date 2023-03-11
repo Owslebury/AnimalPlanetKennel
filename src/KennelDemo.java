@@ -106,6 +106,7 @@ public class KennelDemo {
      * printAll() method runs from the main and prints status
      */
     private void printAll() {
+        kennel.sortAnimalsByName();
         System.out.println(kennel);
     }
 

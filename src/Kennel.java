@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
+import java.util.Collections;
 
 /**
  * To model a Kennel - a collection of cats
@@ -13,7 +15,7 @@ public class Kennel {
     /**
      * Arraylist was changed from cat to Animal to be generic for both cat and dog classes
      */
-    ArrayList<Animal> animalList = new ArrayList<Animal>();
+    private ArrayList<Animal> animalList = new ArrayList<Animal>();
     private int nextFreeLocation;
     private int capacity;
 
@@ -234,6 +236,20 @@ public class Kennel {
             for (Animal c : animalList) {
                 c.save(outfile);
             }
+
         }
+    }
+
+    /**
+     * this subroutine sorts kennel attribute animalList by the names of the animals
+     */
+    public void sortAnimalsByName() {
+        Comparator<Animal> animalNameComparator = new Comparator<Animal>() {
+            public int compare(Animal animal1, Animal animal2) {
+                return animal1.getName().toLowerCase().compareTo(animal2.getName().toLowerCase());
+            }
+        };
+
+        Collections.sort(animalList, animalNameComparator);
     }
 }

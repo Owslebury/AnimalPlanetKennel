@@ -4,7 +4,7 @@ tootsie
 1
 John
 12345
-Animal
+Cat
 true
 2
 Fish
@@ -14,7 +14,7 @@ Judith
 67890
 Jane
 12890
-Animal
+Cat
 false
 3
 Milk
