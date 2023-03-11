@@ -5,11 +5,30 @@ import java.util.Scanner;
 public class Animal {
     protected ArrayList<Owner> originalOwners;
     protected boolean canShare;
+    protected String AnimalName = "Animal";
     protected String Name;
     protected String favFood;
     protected int foodPerDay;
     protected Boolean likesBones;
     protected Boolean sharesRuns;
+
+    /**
+     * Gets the name of the type of animal
+     * @return string animal
+     */
+    public String getAnimal() {
+        return Animal;
+    }
+
+    /**
+     * sets the name of the type of animal
+     * @param animal
+     */
+    public void setAnimal(String animal) {
+        Animal = animal;
+    }
+
+    protected String Animal;
     public String getName() {
         return Name;
     }
@@ -69,6 +88,9 @@ public class Animal {
     public String getFavouriteFood(){
         return favFood;
     }
+    /**
+     * Reads in information about the cat from the file
+     */
     public void load(Scanner infile){
 
         Name = infile.next();
@@ -80,13 +102,12 @@ public class Animal {
             Owner owner = new Owner(name, phone);
             originalOwners.add(owner);
         }
+        AnimalName = infile.next();
         canShare = infile.nextBoolean();
         foodPerDay = infile.nextInt();
         favFood = infile.next();
     }
-    /**
-     * Reads in information about the cat from the file
-     */
+
 
 
     public void save(PrintWriter pw){
@@ -96,6 +117,7 @@ public class Animal {
             pw.println(o.getName());
             pw.println(o.getPhone());
         }
+        pw.println(AnimalName);
         pw.println(canShare);
         pw.println(foodPerDay);
         pw.println(favFood);
@@ -121,10 +143,14 @@ public class Animal {
             return false;
         return true;
     }
+    /**
+     * StringBuilder creates a string
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Animal{name=").append(Name)
+        sb.append(AnimalName)
+        .append("{name=").append(Name)
                 .append(", Original Owner(s) with phone: ").append(originalOwners)
                 .append(", Food per day: ").append(" times");
         return sb.toString();

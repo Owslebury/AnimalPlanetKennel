@@ -31,21 +31,9 @@ public class Cat extends Animal{
 		this.canShare = share;
 		this.favFood = food;
 		this.foodPerDay = mealsPerDay;
+		setAnimal("Cat");
 		likesBones = false;
 
-	}
-	/**
-	 * StringBuilder creates a string
-	 */
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		 sb.append("Cat{name=").append(Name)
-				.append(", Original Owner(s) with phone: ").append(originalOwners)
-				.append(", Food per day: ").append(" times");
-		 return sb.toString();
-		//return "Cat name: " + Name + "\n"
-				//+ "\nOriginal Owner(s) with phone: " + originalOwners + "\n"
-				// + "\nFood per day: " + " times\n";
 	}
 
 }

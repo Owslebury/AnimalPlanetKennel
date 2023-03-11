@@ -10,16 +10,9 @@ public class Dog extends Animal{
         this.canShare = share;
         this.favFood = food;
         this.foodPerDay = mealsPerDay;
+        setAnimal("Dog");
         likesBones = true;
         sharesRuns = false;
     }
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Dog{name=").append(Name)
-                .append(", Original Owner(s) with phone: ").append(originalOwners)
-                .append(", Food per day: ").append(" times");
-        return sb.toString();
-    }
-
 
 }
