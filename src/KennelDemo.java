@@ -146,10 +146,18 @@ public class KennelDemo {
 
     private void admitAnimal() {
 		boolean sr = false;
+        System.out.println("What kind of animal are you adding, car or dog? (C/D)");
+
+        String animal = scan.nextLine();
+        do {
+            System.out.println("You entered " + animal);
+            System.out.print("Please enter C or D: ");
+            animal = scan.nextLine(); // Convert input to uppercase to simplify comparison
+        } while (!animal.toUpperCase().equals("C") && !animal.toUpperCase().equals("D"));
 		System.out
 				.println("enter on separate lines: name, owner-name, owner-phone, shares runs?, favourite food, number of times fed");
 		String name = scan.nextLine();
-		//ArrayList<Owner> owners = getOwners();
+		ArrayList<Owner> owners = getOwners();
 		System.out.println("Can it share a run? (Y/N)");
 		String sharesRuns;
 		sharesRuns = scan.nextLine().toUpperCase();
@@ -163,13 +171,23 @@ public class KennelDemo {
 		int numTimes;
 		numTimes = scan.nextInt(); // This can be improved (InputMismatchException?)
 		scan.nextLine();
-		Cat newCat = new Cat(name, sr, fav, numTimes);
-        ArrayList<Owner> owners = getOwners();
-        for(Owner o: owners){
-            newCat.addOriginalOwner(o);
+        switch (animal.toUpperCase()){
+            case "C":
+                Cat newCat = new Cat(name, sr, fav, numTimes);
+                for(Owner o: owners){
+                    newCat.addOriginalOwner(o);
+                }
+                kennel.addAnimal(newCat);
+                break;
+            case "D":
+                Dog newDog = new Dog(name, sr, fav, numTimes);
+                for(Owner o: owners){
+                    newDog.addOriginalOwner(o);
+                }
+                kennel.addAnimal(newDog);
+                break;
         }
 
-        kennel.addAnimal(newCat);
 	}
 
     private ArrayList<Owner> getOwners() {

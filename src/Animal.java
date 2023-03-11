@@ -25,7 +25,7 @@ public class Animal {
      * @param animal
      */
     public void setAnimal(String animal) {
-        Animal = animal;
+        AnimalName = animal;
     }
 
     protected String Animal;
@@ -152,7 +152,7 @@ public class Animal {
         sb.append(AnimalName)
         .append("{name=").append(Name)
                 .append(", Original Owner(s) with phone: ").append(originalOwners)
-                .append(", Food per day: ").append(" times");
+                .append(", Food per day: ").append(foodPerDay).append(" times");
         return sb.toString();
     }
 
