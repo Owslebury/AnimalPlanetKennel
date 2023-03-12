@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Dog extends Animal{
+    protected Boolean likesBones;
      boolean needsWalk;
     private ArrayList<String> kindsOfFoodEaten;
     public Dog(String name, boolean share, String food,

@@ -36,8 +36,6 @@ public class Cat extends Animal{
 		this.favFood = food;
 		this.foodPerDay = mealsPerDay;
 		setAnimal("Cat");
-		likesBones = false;
-
 	}
 
 }

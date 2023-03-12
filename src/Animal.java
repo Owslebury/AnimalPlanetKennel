@@ -9,7 +9,7 @@ public class Animal {
     protected String Name;
     protected String favFood;
     protected int foodPerDay;
-    protected Boolean likesBones;
+
 
 
     /**

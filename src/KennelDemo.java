@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.*;
 
 /**
  * This class runs a Kennel
@@ -16,6 +17,7 @@ import java.util.Scanner;
  * @version 3 (20th February 2023)
  */
 public class KennelDemo {
+    private boolean finish = false;
     private String filename; // holds the name of the file
     private Kennel kennel; // holds the kennel
     private Scanner scan; // so we can read from keyboard
@@ -25,18 +27,42 @@ public class KennelDemo {
      * is in this class. We don't want this class to be used by any other class.
      */
     private KennelDemo() {
-        File file;
-        scan = new Scanner(System.in);
-        System.out.print("Please enter the filename of kennel information: ");
-        filename = scan.nextLine();
-        file = new File(filename);
-        while (file.exists() == false){
-            System.out.println("File does not exist, please enter a new filename: ");
-            filename = scan.nextLine();
-            file = new File(filename);
+        JFileChooser fileChooser = new JFileChooser();
+        //this ensures that it only selects the file name rather than the directory
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        File myFile = null;
+        String response;
+        //show open dialog shows the dialog to open a file
+        int result = fileChooser.showOpenDialog(null);
+        //approve option returns number indicating true or false for whether it was approved
+        if (result == JFileChooser.APPROVE_OPTION) {
+            myFile = fileChooser.getSelectedFile();
+            filename = myFile.getName();
+        } else {
+            while (myFile == null){
+                System.out.println("You did not select a file, press q to quit or s to select again");
+                scan = new Scanner(System.in);
+                response = scan.nextLine().toUpperCase();
+                switch (response.toUpperCase()){
+                    case "S":
+                        result = fileChooser.showOpenDialog(null);
+                        if (result == JFileChooser.APPROVE_OPTION){
+                            myFile = fileChooser.getSelectedFile();
+                        }
+                        else{
+                            myFile = null;
+                        }
+                    case "Q":
+                        System.out.println("***********GOODBYE**********");
+                        finish = true;
+                        break;
+                }
+                break;
+            }
         }
         kennel = new Kennel();
     }
+
 
     /*
      * initialise() method runs from the main and reads from a file
@@ -112,7 +138,7 @@ public class KennelDemo {
                 max = Integer.parseInt(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter max number of cats: ");
+                System.out.println("Invalid input. Please enter max number of animals: ");
             }
         }
         kennel.setCapacity(max);
@@ -254,11 +280,13 @@ public class KennelDemo {
     public static void main(String args[]) {
         System.out.println("**********HELLO***********");
         KennelDemo demo = new KennelDemo();
-        demo.initialise();
-        demo.runMenu();
-        demo.printAll();
-        // MAKE A BACKUP COPY OF cats.txt JUST IN CASE YOU CORRUPT IT
-        demo.save();
-        System.out.println("***********GOODBYE**********");
+        if (demo.finish == false){
+            demo.initialise();
+            demo.runMenu();
+            demo.printAll();
+            // MAKE A BACKUP COPY OF cats.txt JUST IN CASE YOU CORRUPT IT
+            demo.save();
+            System.out.println("***********GOODBYE**********");
+        }
     }
 }
