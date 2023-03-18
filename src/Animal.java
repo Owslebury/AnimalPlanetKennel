@@ -103,7 +103,7 @@ public class Animal {
             originalOwners.add(owner);
         }
         AnimalName = infile.next();
-        canShare = infile.nextBoolean();
+        //canShare = infile.nextBoolean();
         foodPerDay = infile.nextInt();
         favFood = infile.next();
     }
@@ -118,7 +118,7 @@ public class Animal {
             pw.println(o.getPhone());
         }
         pw.println(AnimalName);
-        pw.println(canShare);
+        //pw.println(canShare);
         pw.println(foodPerDay);
         pw.println(favFood);
 

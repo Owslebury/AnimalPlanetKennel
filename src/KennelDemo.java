@@ -194,7 +194,6 @@ public class KennelDemo {
 
     private void admitAnimal() {
         Scanner scan = new Scanner(System.in);
-        boolean sr = false;
         System.out.println("What kind of animal are you adding, cat or dog? (C/D)");
 
         String animal;
@@ -209,17 +208,7 @@ public class KennelDemo {
         String name = scan.nextLine();
         ArrayList<Owner> owners = getOwners();
         System.out.println("Can it share a run? (Y/N)");
-        String sharesRuns;
-        do {
-            sharesRuns = scan.nextLine().toUpperCase();
-            if (!sharesRuns.equals("Y") && !sharesRuns.equals("N")) {
-                System.out.print("Invalid input. Please enter Y or N: ");
-            }
-        } while (!sharesRuns.equals("Y") && !sharesRuns.equals("N"));
 
-        if (sharesRuns.equals("Y")) {
-            sr = true;
-        }
 
         System.out.println("What is its favourite food?");
         String fav = scan.nextLine();
@@ -240,14 +229,14 @@ public class KennelDemo {
 
         switch (animal) {
             case "C":
-                Cat newCat = new Cat(name, sr, fav, numTimes);
+                Cat newCat = new Cat(name, fav, numTimes);
                 for (Owner o : owners) {
                     newCat.addOriginalOwner(o);
                 }
                 kennel.addAnimal(newCat);
                 break;
             case "D":
-                Dog newDog = new Dog(name, sr, fav, numTimes);
+                Dog newDog = new Dog(name, fav, numTimes);
                 for (Owner o : owners) {
                     newDog.addOriginalOwner(o);
                 }
@@ -256,6 +245,21 @@ public class KennelDemo {
         }
     }
 
+    private boolean SharesRuns(){
+        boolean sr = false;
+        String sharesRuns;
+        do {
+            sharesRuns = scan.nextLine().toUpperCase();
+            if (!sharesRuns.equals("Y") && !sharesRuns.equals("N")) {
+                System.out.print("Invalid input. Please enter Y or N: ");
+            }
+        } while (!sharesRuns.equals("Y") && !sharesRuns.equals("N"));
+
+        if (sharesRuns.equals("Y")) {
+            sr = true;
+        }
+        return sr;
+    }
 
     private ArrayList<Owner> getOwners() {
         ArrayList<Owner> owners = new ArrayList<Owner>();

@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Cat extends Animal{
 	 */
 	protected Boolean sharesRuns;
 	public Cat(){
-		this("unknown", false, "unknown", 1);
+		this("unknown", "unknown", 1);
 	}
 
 	/**
@@ -28,14 +30,28 @@ public class Cat extends Animal{
 	 * @param share Is true if the cat can share a run with other cats, otherwise false
 	 * An arraylist of owners is made
 	 */
-	public Cat(String name, boolean share, String food,
+	public Cat(String name,  String food,
 			int mealsPerDay) {
 		Name = name;
 		originalOwners = new ArrayList<Owner>();
-		this.canShare = share;
 		this.favFood = food;
 		this.foodPerDay = mealsPerDay;
 		setAnimal("Cat");
+	}
+	public void loadCatMethods(){
+		try (FileReader fr = new FileReader("cat.txt");
+			 BufferedReader br = new BufferedReader(fr);
+			 Scanner infile = new Scanner(br)) {
+
+			// Use the delimiter pattern so that we don't have to clear end of line
+			// characters after doing a nextInt or nextBoolean
+			infile.useDelimiter("\r?\n|\r");
+			sharesRuns = infile.nextBoolean();
+		}
+		catch (Exception e){
+
+		}
+
 	}
 
 }

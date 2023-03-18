@@ -1,5 +1,12 @@
 CatsRUs
 20
+John
+1
+Peter
+0148
+Dog
+5
+pizza
 Sylvester
 2
 Judith
@@ -7,7 +14,6 @@ Judith
 Jane
 12890
 Cat
-false
 3
 Milk
 tootsie
@@ -15,6 +21,5 @@ tootsie
 John
 12345
 Cat
-true
 2
 Fish
