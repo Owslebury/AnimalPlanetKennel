@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Collections;
+import java.lang.Object;
 
 /**
  * To model a Kennel - a collection of cats
@@ -117,7 +118,7 @@ public class Kennel {
         Animal which = null;
         // Search for the cat by name
         for (Animal c : animalList) {
-            if (who.equals(c.getName())) {
+            if (who.toLowerCase().equals(c.getName().toLowerCase())) {
                 which = c;
             }
         }
@@ -174,7 +175,7 @@ public class Kennel {
         // ENTER CODE HERE (POSSIBLY CHANGE SOME, YOU MAY CHANGE THE SIGNATURE TO DEAL
         // WITH ALL KINDS OF ANIMALS: CATS AND DOGS)
         for (Animal item: animalList){
-            if (item.getName().equals(name)){
+            if (item.getName().toLowerCase().equals(name.toLowerCase())){
                 return item;
             }
         }
@@ -238,6 +239,21 @@ public class Kennel {
             }
 
         }
+        saveImages();
+    }
+    private void saveImages(){
+        String outfile = "imageFiles.txt";
+        try {
+            FileWriter fw = new FileWriter("imageFiles.txt");
+            BufferedWriter buffer = new BufferedWriter(fw);
+            for (Animal c : animalList) {
+                buffer.write(c.imageFile + "\n");
+            }
+            buffer.close();
+        }
+        catch (IOException e){
+            System.out.println("Error saving image files");
+        }
     }
 
     /**
@@ -253,11 +269,11 @@ public class Kennel {
         Collections.sort(animalList, animalNameComparator);
     }
     public boolean hasAnimal(String animalName){
-        if (animalList.contains(animalName)){
-            return true;
+        for (Animal c : animalList) {
+            if (c.getName().toLowerCase().equals(animalName.toLowerCase())){
+                return true;
+            }
         }
-        else{
             return false;
-        }
     }
 }

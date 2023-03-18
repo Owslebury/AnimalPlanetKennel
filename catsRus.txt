@@ -1,13 +1,5 @@
 CatsRUs
 20
-tootsie
-1
-John
-12345
-Cat
-true
-2
-Fish
 Sylvester
 2
 Judith
@@ -18,3 +10,11 @@ Cat
 false
 3
 Milk
+tootsie
+1
+John
+12345
+Cat
+true
+2
+Fish

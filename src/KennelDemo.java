@@ -165,7 +165,7 @@ public class KennelDemo {
     }
 
     private void removeAnimal() {
-        System.out.println("which cat do you want to remove");
+        System.out.println("which animal do you want to remove");
         String animalToBeRemoved;
         animalToBeRemoved = scan.nextLine();
         if (kennel.hasAnimal(animalToBeRemoved)== false){
@@ -195,7 +195,7 @@ public class KennelDemo {
     private void admitAnimal() {
         Scanner scan = new Scanner(System.in);
         boolean sr = false;
-        System.out.println("What kind of animal are you adding, car or dog? (C/D)");
+        System.out.println("What kind of animal are you adding, cat or dog? (C/D)");
 
         String animal;
         do {
@@ -207,9 +207,7 @@ public class KennelDemo {
 
         System.out.println("Enter on separate lines: name, owner-name, owner-phone, shares runs?, favourite food, number of times fed");
         String name = scan.nextLine();
-        String ownerName = scan.nextLine();
-        String ownerPhone = scan.nextLine();
-
+        ArrayList<Owner> owners = getOwners();
         System.out.println("Can it share a run? (Y/N)");
         String sharesRuns;
         do {
@@ -239,7 +237,7 @@ public class KennelDemo {
         }
         scan.nextLine();
 
-        ArrayList<Owner> owners = getOwners();
+
         switch (animal) {
             case "C":
                 Cat newCat = new Cat(name, sr, fav, numTimes);
