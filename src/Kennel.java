@@ -142,12 +142,14 @@ public class Kennel {
             switch (c.getAnimalName()){
                 case "Dog":
                     newDog = new Dog(c);
+                    results = results + newDog.toString() + "\n";
                     break;
                 case "Cat":
                     newCat = new Cat(c);
+                    results = results + newCat.toString() + "\n";
                     break;
             }
-            results = results + c.toString() + "\n";
+
         }
         return results;
     }

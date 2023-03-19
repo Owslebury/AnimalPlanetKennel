@@ -251,12 +251,9 @@ public class KennelDemo {
                 newDog.needsWalk = GetYesOrNo();
 
                 System.out.println("Please enter any other diet info about the dog, write a single line with a ! to stop writing.");
-                String line;
-                do{
-                    line = scan.nextLine();
-                    newDog.DietInfo.add(line);
-                } while (line.equals("!") == false);
+                newDog.DietInfo = (scan.nextLine());
                 kennel.addAnimal(newDog);
+                newDog.saveDog();
                 break;
         }
     }
