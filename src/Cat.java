@@ -77,7 +77,9 @@ public class Cat extends Animal{
 		sb.append(baseAnimal.AnimalName)
 				.append("{name=").append(baseAnimal.Name)
 				.append(", Original Owner(s) with phone: ").append(baseAnimal.originalOwners)
-				.append(", Food per day: ").append(baseAnimal.foodPerDay).append(" times");
+				.append(", Food per day: ").append(baseAnimal.foodPerDay).append(" times")
+				.append(", Shares runs: ").append(sharesRuns);
+
 		return sb.toString();
 	}
 

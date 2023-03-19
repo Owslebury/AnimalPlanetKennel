@@ -31,7 +31,9 @@ public class Dog extends Animal{
                 String tempName = infile.nextLine();
                 likesBones = infile.nextBoolean();
                 needsWalk = infile.nextBoolean();
-                String dietInfo = infile.nextLine().trim();
+                //prevents whitespace
+                infile.nextLine();
+                DietInfo = infile.nextLine();
                 if (tempName.equals(dogName)) {
                     infile.close();
                     return this;
@@ -66,7 +68,10 @@ public class Dog extends Animal{
         sb.append(baseAnimal.AnimalName)
                 .append("{name=").append(baseAnimal.Name)
                 .append(", Original Owner(s) with phone: ").append(baseAnimal.originalOwners)
-                .append(", Food per day: ").append(baseAnimal.foodPerDay).append(" times");
+                .append(", Food per day: ").append(baseAnimal.foodPerDay).append(" times")
+                .append(", likes bones: ").append(likesBones)
+                .append(", needs walks: ").append(needsWalk)
+                .append(", diet info: \n").append(DietInfo);
         return sb.toString();
     }
 
