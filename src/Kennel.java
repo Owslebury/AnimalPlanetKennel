@@ -136,7 +136,17 @@ public class Kennel {
      */
     public String toString() {
         String results = "Data in Kennel " + name + " is: \n";
+        Dog newDog = null;
+        Cat newCat = null;
         for (Animal c : animalList) {
+            switch (c.getAnimalName()){
+                case "Dog":
+                    newDog = new Dog(c);
+                    break;
+                case "Cat":
+                    newCat = new Cat(c);
+                    break;
+            }
             results = results + c.toString() + "\n";
         }
         return results;

@@ -5,18 +5,14 @@ import java.util.Scanner;
 
 public class Dog extends Animal{
     protected Boolean likesBones;
-     boolean needsWalk;
-    private ArrayList<String> kindsOfFoodEaten;
-    public Dog(String name, String food,
-               int mealsPerDay){
-        Name = name;
+    protected Boolean needsWalk;
+    protected ArrayList<String> DietInfo = new ArrayList<String>();
+    public Dog(Animal base){
         originalOwners = new ArrayList<Owner>();
-        this.favFood = food;
-        this.foodPerDay = mealsPerDay;
         setAnimal("Dog");
-        likesBones = true;
+        loadDogMethods(getName());
     }
-    public void loadDogMethods(){
+    public void loadDogMethods(String dogName){
         try (FileReader fr = new FileReader("dog.txt");
              BufferedReader br = new BufferedReader(fr);
              Scanner infile = new Scanner(br)) {
@@ -26,6 +22,10 @@ public class Dog extends Animal{
             infile.useDelimiter("\r?\n|\r");
 
             likesBones = infile.nextBoolean();
+            needsWalk = infile.nextBoolean();
+            while (infile.hasNext()){
+                DietInfo.add(infile.nextLine());
+            }
         }
         catch (Exception e){
 

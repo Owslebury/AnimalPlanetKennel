@@ -18,9 +18,6 @@ public class Cat extends Animal{
 	 * Share runs is only relevant to cats
 	 */
 	protected Boolean sharesRuns;
-	public Cat(){
-		this("unknown", "unknown", 1);
-	}
 
 	/**
 	 * Constructor for the cat
@@ -30,12 +27,8 @@ public class Cat extends Animal{
 	 * @param share Is true if the cat can share a run with other cats, otherwise false
 	 * An arraylist of owners is made
 	 */
-	public Cat(String name,  String food,
-			int mealsPerDay) {
-		Name = name;
+	public Cat(Animal base) {
 		originalOwners = new ArrayList<Owner>();
-		this.favFood = food;
-		this.foodPerDay = mealsPerDay;
 		setAnimal("Cat");
 	}
 	public void loadCatMethods(){

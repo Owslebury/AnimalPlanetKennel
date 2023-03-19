@@ -16,8 +16,8 @@ public class Animal {
      * Gets the name of the type of animal
      * @return string animal
      */
-    public String getAnimal() {
-        return Animal;
+    public String getAnimalName() {
+        return AnimalName;
     }
 
     /**
