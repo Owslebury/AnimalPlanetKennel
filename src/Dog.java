@@ -34,7 +34,7 @@ public class Dog extends Animal{
                 //prevents whitespace
                 infile.nextLine();
                 DietInfo = infile.nextLine();
-                if (tempName.equals(dogName)) {
+                if (tempName.equalsIgnoreCase(dogName)) {
                     infile.close();
                     return this;
                 }

@@ -177,7 +177,7 @@ public class KennelDemo {
     }
 
     private void searchForAnimal() {
-        System.out.println("which cat do you want to search for");
+        System.out.println("enter animal name to search for");
         String name = scan.nextLine();
         Animal animal = kennel.search(name);
         if (animal != null) {

@@ -43,11 +43,10 @@ public class Cat extends Animal{
 			// Use the delimiter pattern so that we don't have to clear end of line
 			// characters after doing a nextInt or nextBoolean
 			infile.useDelimiter("\r?\n|\r");
-			sharesRuns = infile.nextBoolean();
 			while (infile.hasNextLine()) {
 				String tempName = infile.nextLine();
-				sharesRuns = infile.nextBoolean();
-				if (tempName.equals(catName)) {
+				if (tempName.equalsIgnoreCase(catName)) {
+					sharesRuns = infile.nextBoolean();
 					infile.close();
 					return this;
 				}
