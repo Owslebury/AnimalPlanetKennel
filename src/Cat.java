@@ -33,7 +33,6 @@ public class Cat extends Animal{
 		baseAnimal = base;
 		originalOwners = new ArrayList<Owner>();
 		setAnimal("Cat");
-		loadCatMethods(base.Name);
 	}
 	public Cat loadCatMethods(String catName){
 		try (FileReader fr = new FileReader("cat.txt");
@@ -63,11 +62,12 @@ public class Cat extends Animal{
 		try{
 			//filewriter appends to the end of the file so multiple dogs can be added.
 			FileWriter writer = new FileWriter("cat.txt", true);
-			writer.write(baseAnimal.getName() + "\n");
+			writer.write("\n" + baseAnimal.getName() + "\n");
 			writer.write(sharesRuns + "\n");
+			writer.close();
 		}
 		catch (Exception e){
-
+			System.out.println("Error saving cat attributes");
 		}
 
 	}

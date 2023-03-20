@@ -181,9 +181,20 @@ public class KennelDemo {
         String name = scan.nextLine();
         Animal animal = kennel.search(name);
         if (animal != null) {
-            System.out.println(animal.toString());
+            switch(animal.getAnimalName()){
+                case "Dog":
+                    Dog newDog = new Dog(animal);
+                    newDog.loadDogMethods(animal.Name);
+                    System.out.println(newDog.toString());
+                    break;
+                case "Cat":
+                    Cat newCat = new Cat(animal);
+                    newCat.loadCatMethods(animal.Name);
+                    System.out.println(newCat.toString());
+                    break;
+            }
         } else {
-            System.out.println("Could not find cat: " + name);
+            System.out.println("Could not find animal: " + name);
         }
     }
 
@@ -200,11 +211,20 @@ public class KennelDemo {
         String animal;
         do {
             animal = scan.nextLine().toUpperCase();
-            if (!animal.toUpperCase().equals("C") && !animal.toUpperCase().equals("D")) {
+            if (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false) {
                 System.out.print("Invalid input. Please enter C or D: ");
             }
-        } while (!animal.toUpperCase().equals("C") && !animal.toUpperCase().equals("D"));
+        } while (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false);
 
+        if (animal.toUpperCase().equals("C")){
+            animalBase.AnimalName="Cat";
+        }
+        else if (animal.toUpperCase() == "D"){
+            animalBase.AnimalName = "Dog";
+        }
+        else{
+            System.out.println("WHAT");
+        }
 
         System.out.println("Enter on separate lines: name, owner-name, owner-phone, favourite food, number of times fed");
         animalBase.setName(scan.nextLine());
@@ -227,32 +247,27 @@ public class KennelDemo {
         }
         scan.nextLine();
         animalBase.setFeedsPerDay(numTimes);
-
+        for (Owner o : owners) {
+            animalBase.addOriginalOwner(o);
+        }
+        kennel.addAnimal(animalBase);
 
         switch (animal) {
             case "C":
                 Cat newCat = new Cat(animalBase);
-                for (Owner o : owners) {
-                    newCat.addOriginalOwner(o);
-                }
                 System.out.println("Can it share a run? (Y/N)");
                 newCat.sharesRuns = GetYesOrNo();
-                kennel.addAnimal(newCat);
+                newCat.saveCat();
                 break;
             case "D":
                 Dog newDog = new Dog(animalBase);
-                for (Owner o : owners) {
-                    newDog.addOriginalOwner(o);
-                }
                 System.out.println("Does it like bones? (Y/N)");
                 newDog.likesBones = GetYesOrNo();
-
                 System.out.println("Does it need a walk? (Y/N)");
                 newDog.needsWalk = GetYesOrNo();
 
-                System.out.println("Please enter any other diet info about the dog, write a single line with a ! to stop writing.");
+                System.out.println("Please enter any other diet info about the dog");
                 newDog.DietInfo = (scan.nextLine());
-                kennel.addAnimal(newDog);
                 newDog.saveDog();
                 break;
         }

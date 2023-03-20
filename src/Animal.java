@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Animal {
-    protected ArrayList<Owner> originalOwners;
+    protected ArrayList<Owner> originalOwners = new ArrayList<Owner>();
     protected boolean canShare;
     protected String AnimalName = "Animal";
     protected String Name;

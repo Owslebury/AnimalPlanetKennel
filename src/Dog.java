@@ -18,7 +18,6 @@ public class Dog extends Animal{
         baseAnimal = base;
         originalOwners = new ArrayList<Owner>();
         setAnimal("Dog");
-        loadDogMethods(getName());
     }
     public Dog loadDogMethods(String dogName){
         try (FileReader fr = new FileReader("dog.txt");
