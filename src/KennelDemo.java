@@ -219,7 +219,7 @@ public class KennelDemo {
         if (animal.toUpperCase().equals("C")){
             animalBase.AnimalName="Cat";
         }
-        else if (animal.toUpperCase() == "D"){
+        else if (animal.toUpperCase().equals("D")){
             animalBase.AnimalName = "Dog";
         }
         else{

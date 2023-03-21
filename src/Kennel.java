@@ -150,6 +150,8 @@ public class Kennel {
                     newCat.loadCatMethods(c.getName());
                     results = results + newCat.toString() + "\n";
                     break;
+                default:
+                    results = results + c.toString() + "\n";
             }
 
         }

@@ -28,12 +28,12 @@ public class Dog extends Animal{
             infile.useDelimiter("\r?\n|\r");
             while (infile.hasNextLine()) {
                 String tempName = infile.nextLine();
-                likesBones = infile.nextBoolean();
-                needsWalk = infile.nextBoolean();
-                //prevents whitespace
-                infile.nextLine();
-                DietInfo = infile.nextLine();
                 if (tempName.equalsIgnoreCase(dogName)) {
+                    likesBones = infile.nextBoolean();
+                    needsWalk = infile.nextBoolean();
+                    //prevents whitespace
+                    infile.nextLine();
+                    DietInfo = infile.nextLine();
                     infile.close();
                     return this;
                 }
@@ -56,9 +56,10 @@ public class Dog extends Animal{
             writer.write(likesBones + "\n");
             writer.write(needsWalk + "\n");
             writer.write(DietInfo + "\n");
+            writer.close();
         }
         catch (Exception e){
-
+            System.out.println("Could not add dog to file");
         }
 
     }
