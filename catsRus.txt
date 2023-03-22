@@ -7,11 +7,11 @@ Peter
 Dog
 5
 pizza
-none
+dog.jpg
 Pete
 1
 Samaa
-44
+443094832094
 Dog
 4
 yogurt
@@ -33,4 +33,4 @@ John
 Cat
 2
 Fish
-dog.jpg
+none

@@ -1,0 +1,12 @@
+sylvester
+true
+tootsie
+false
+regre
+false
+
+lambda
+true
+
+tabitha
+false

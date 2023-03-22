@@ -110,7 +110,10 @@ public class Animal {
     }
 
 
-
+    /**
+     * Saves all of the generic animals to the text file given
+     * @param pw
+     */
     public void save(PrintWriter pw){
         pw.println(Name);
         pw.println(originalOwners.size());

@@ -14,7 +14,7 @@ import javax.swing.*;
  * This class runs a Kennel
  *
  * @author Lynda Thomas, Chris Loftus and Faisal Rezwan
- * @version 3 (20th February 2023)
+ * @version last edit 22/3/23
  */
 public class KennelDemo {
     private boolean finish = false;
@@ -25,6 +25,10 @@ public class KennelDemo {
     /*
      * Notice how we can make this constructor private, since we only call from main which
      * is in this class. We don't want this class to be used by any other class.
+     */
+
+    /**
+     * User selects a file and if it is valid it will open, else it continue prompting or the user can quit
      */
     private KennelDemo() {
         JFileChooser fileChooser = new JFileChooser();
@@ -120,6 +124,10 @@ public class KennelDemo {
         } while (!(response.equals("Q")));
     }
 
+    /**
+     * Printmenu prints the menu options to the console
+     */
+
     private void printMenu() {
         System.out.println("1 -  add a new Animal ");
         System.out.println("2 -  set up Kennel name");
@@ -130,11 +138,15 @@ public class KennelDemo {
         System.out.println("q - Quit (save)");
     }
 
+    /**
+     * setKennelCapacity sets the maximum number of animals to the kennel
+     */
+
     private void setKennelCapacity() {
         int max = 0;
         while (true) {
             try {
-                System.out.print("Enter max number of cats: ");
+                System.out.print("Enter max number of animals: ");
                 max = Integer.parseInt(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
@@ -164,6 +176,10 @@ public class KennelDemo {
         }
     }
 
+    /**
+     * Removeanimal removes an animal from the kennel by name
+     */
+
     private void removeAnimal() {
         System.out.println("which animal do you want to remove");
         String animalToBeRemoved;
@@ -175,6 +191,11 @@ public class KennelDemo {
             kennel.removeAnimal(animalToBeRemoved);
         }
     }
+
+    /**
+     * SearchForAnimal searches for animal in kennel and prints its tostring method
+     * if the imagefile is not nothing, the user has the option to open the image in a prompt
+     */
 
     private void searchForAnimal() {
         System.out.println("enter animal name to search for");
@@ -213,11 +234,20 @@ public class KennelDemo {
         }
     }
 
+    /**
+     * changes the name of the kennel
+     */
+
     private void changeKennelName() {
         System.out.println("Please enter a new name for the kennel");
         String name = scan.nextLine();
         kennel.setName(name);
     }
+
+    /**
+     * Takes in attributes for animals, as well as attributes for specific animals which it saves
+     * to their specific text file
+     */
 
     private void admitAnimal() {
         if (kennel.KennelFull() == false) {
@@ -322,6 +352,11 @@ public class KennelDemo {
         }
         return choice;
     }
+
+    /**
+     * gets the names and phone numbers of as many owners as wanted
+     * @return
+     */
 
     private ArrayList<Owner> getOwners() {
         ArrayList<Owner> owners = new ArrayList<Owner>();

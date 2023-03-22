@@ -14,11 +14,22 @@ public class Dog extends Animal{
     protected Boolean needsWalk;
     protected String DietInfo;
     private Animal baseAnimal;
+
+    /**
+     *
+     * @param base generic animal method
+     */
     public Dog(Animal base){
         baseAnimal = base;
         originalOwners = new ArrayList<Owner>();
         setAnimal("Dog");
     }
+
+    /**
+     * loads dog specific methods from dog.txt
+     * @param dogName
+     * @return
+     */
     public Dog loadDogMethods(String dogName){
         try (FileReader fr = new FileReader("dog.txt");
              BufferedReader br = new BufferedReader(fr);
@@ -48,6 +59,9 @@ public class Dog extends Animal{
 
     }
 
+    /**
+     * saves dog specific methods to dog.txt
+     */
     public void saveDog(){
 
 
@@ -65,6 +79,11 @@ public class Dog extends Animal{
         }
 
     }
+
+    /**
+     * tostring method with dog specific attributes
+     * @return
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(baseAnimal.AnimalName)

@@ -267,23 +267,8 @@ public class Kennel {
             }
 
         }
-        saveImages();
     }
-    private void saveImages(){
-        String outfile = "imageFiles.txt";
-        try {
-            FileWriter fw = new FileWriter("imageFiles.txt");
-            BufferedWriter buffer = new BufferedWriter(fw);
-            for (Animal c : animalList) {
-                buffer.write(c.getName() + "\n");
-                buffer.write(c.imageFile + "\n");
-            }
-            buffer.close();
-        }
-        catch (IOException e){
-            System.out.println("Error saving image files");
-        }
-    }
+
 
     /**
      * this subroutine sorts kennel attribute animalList by the names of the animals

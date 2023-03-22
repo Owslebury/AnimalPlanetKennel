@@ -23,10 +23,6 @@ public class Cat extends Animal{
 
 	/**
 	 * Constructor for the cat
-	 * @param name The cat's name
-	 * @param food The kind of food it eats
-	 * @param mealsPerDay Number of feeds per day
-	 * @param share Is true if the cat can share a run with other cats, otherwise false
 	 * An arraylist of owners is made
 	 */
 	public Cat(Animal base) {
@@ -34,6 +30,12 @@ public class Cat extends Animal{
 		originalOwners = new ArrayList<Owner>();
 		setAnimal("Cat");
 	}
+
+	/**
+	 * Loads individual cat methods from cat file when given the cat name
+	 * @param catName name to search for
+	 * @return
+	 */
 	public Cat loadCatMethods(String catName){
 		try (FileReader fr = new FileReader("cat.txt");
 			 BufferedReader br = new BufferedReader(fr);
@@ -58,6 +60,10 @@ public class Cat extends Animal{
 			return null;
 		}
 	}
+
+	/**
+	 * Saves individual cat methods to cat.txt
+	 */
 	public void saveCat(){
 		try{
 			//filewriter appends to the end of the file so multiple dogs can be added.
@@ -71,6 +77,11 @@ public class Cat extends Animal{
 		}
 
 	}
+
+	/**
+	 * tostring method with cat specific attributes
+	 * @return
+	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(baseAnimal.AnimalName)
