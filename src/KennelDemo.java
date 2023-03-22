@@ -380,7 +380,15 @@ public class KennelDemo {
         System.out.println("**********HELLO***********");
         KennelDemo demo = new KennelDemo();
         if (demo.finish == false){
-            demo.initialise();
+            try{
+                demo.initialise();
+            }
+            catch (Exception e){
+                System.out.println("This file is not in the correct format!");
+                main(args);
+                return;
+            }
+
             demo.runMenu();
             demo.printAll();
             // MAKE A BACKUP COPY OF cats.txt JUST IN CASE YOU CORRUPT IT
