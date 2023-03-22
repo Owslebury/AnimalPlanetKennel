@@ -9,7 +9,7 @@ public class Animal {
     protected String Name;
     protected String favFood;
     protected int foodPerDay;
-    protected String imageFile;
+    protected String imageFile = "none";
 
 
     /**
@@ -122,7 +122,7 @@ public class Animal {
         //pw.println(canShare);
         pw.println(foodPerDay);
         pw.println(favFood);
-
+        pw.println(imageFile);
     }
     /**
      * Note that this only compares equality based on a

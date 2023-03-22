@@ -193,18 +193,17 @@ public class KennelDemo {
                     System.out.println(newCat.toString());
                     break;
             }
-            if (animal.imageFile != "none" && animal.imageFile != null){
+            if (animal.imageFile.equals("none") == false && animal.imageFile != null){
                 boolean input;
                     System.out.println("This animal has one matching image, show? (Y/N)");
                     input = GetYesOrNo();
                 if (input == true){
-                    JFrame frame = new JFrame();
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    ImageIcon icon = new ImageIcon(animal.imageFile);
-                    JLabel label = new JLabel(icon);
-                    frame.getContentPane().add(label);
-                    frame.pack();
-                    frame.setVisible(true);
+                    JFrame dialog = new JFrame();
+                    ImageIcon image = new ImageIcon(animal.imageFile);
+                    JLabel label = new JLabel(image);
+                    dialog.getContentPane().add(label);
+                    dialog.pack();
+                    dialog.setVisible(true);
                 }
 
 
@@ -265,6 +264,20 @@ public class KennelDemo {
             animalBase.setFeedsPerDay(numTimes);
             for (Owner o : owners) {
                 animalBase.addOriginalOwner(o);
+            }
+            System.out.println("Add image file? (Y/N)");
+            Boolean input = GetYesOrNo();
+
+            if (input == true){
+                System.out.println("Please enter the filename of the image");
+                String filename = scan.nextLine();
+                File file = new File(filename);
+                if (file.exists()){
+                    animalBase.imageFile = filename;
+                }
+                else{
+                    System.out.println("Sorry, file does not exist");
+                }
             }
             kennel.addAnimal(animalBase);
 

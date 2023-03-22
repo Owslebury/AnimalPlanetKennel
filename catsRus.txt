@@ -33,4 +33,4 @@ John
 Cat
 2
 Fish
-haha.jpg
+dog.jpg
