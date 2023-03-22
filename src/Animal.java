@@ -9,7 +9,7 @@ public class Animal {
     protected String Name;
     protected String favFood;
     protected int foodPerDay;
-    protected String imageFile ="//";
+    protected String imageFile;
 
 
     /**
@@ -106,6 +106,7 @@ public class Animal {
         //canShare = infile.nextBoolean();
         foodPerDay = infile.nextInt();
         favFood = infile.next();
+        imageFile = infile.next();
     }
 
 

@@ -49,6 +49,8 @@ public class Dog extends Animal{
     }
 
     public void saveDog(){
+
+
         try{
             //filewriter appends to the end of the file so multiple dogs can be added.
             FileWriter writer = new FileWriter("dog.txt", true);

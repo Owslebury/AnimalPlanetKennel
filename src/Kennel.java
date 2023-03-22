@@ -28,6 +28,18 @@ public class Kennel {
     }
 
     /**
+     * For admitAnimal in KennelDemo, to know immediately if the kennel is full
+     * @return
+     */
+
+    public Boolean KennelFull(){
+        if (nextFreeLocation + 1 > capacity){
+            System.out.println("Sorry, the kennel is full");
+            return true;
+        }
+        return false;
+    }
+    /**
      * Create a kennel
      *
      * @param maxNoAnimals The capacity of the kennel
@@ -263,6 +275,7 @@ public class Kennel {
             FileWriter fw = new FileWriter("imageFiles.txt");
             BufferedWriter buffer = new BufferedWriter(fw);
             for (Animal c : animalList) {
+                buffer.write(c.getName() + "\n");
                 buffer.write(c.imageFile + "\n");
             }
             buffer.close();
@@ -284,6 +297,12 @@ public class Kennel {
 
         Collections.sort(animalList, animalNameComparator);
     }
+
+    /**
+     * checks if the kennel has a specific animal, searches by name
+     * @param animalName
+     * @return
+     */
     public boolean hasAnimal(String animalName){
         for (Animal c : animalList) {
             if (c.getName().toLowerCase().equals(animalName.toLowerCase())){

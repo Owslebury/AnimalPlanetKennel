@@ -127,7 +127,7 @@ public class KennelDemo {
         System.out.println("4 -  search for an animal");
         System.out.println("5 -  remove an animal");
         System.out.println("6 -  set kennel capacity");
-        System.out.println("q - Quit");
+        System.out.println("q - Quit (save)");
     }
 
     private void setKennelCapacity() {
@@ -193,83 +193,100 @@ public class KennelDemo {
                     System.out.println(newCat.toString());
                     break;
             }
+            if (animal.imageFile != "none" && animal.imageFile != null){
+                boolean input;
+                    System.out.println("This animal has one matching image, show? (Y/N)");
+                    input = GetYesOrNo();
+                if (input == true){
+                    JFrame frame = new JFrame();
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ImageIcon icon = new ImageIcon(animal.imageFile);
+                    JLabel label = new JLabel(icon);
+                    frame.getContentPane().add(label);
+                    frame.pack();
+                    frame.setVisible(true);
+                }
+
+
+            }
         } else {
             System.out.println("Could not find animal: " + name);
         }
     }
 
     private void changeKennelName() {
+        System.out.println("Please enter a new name for the kennel");
         String name = scan.nextLine();
         kennel.setName(name);
     }
 
     private void admitAnimal() {
-        Scanner scan = new Scanner(System.in);
-        Animal animalBase = new Animal();
-        System.out.println("What kind of animal are you adding, cat or dog? (C/D)");
+        if (kennel.KennelFull() == false) {
+            Scanner scan = new Scanner(System.in);
+            Animal animalBase = new Animal();
+            System.out.println("What kind of animal are you adding, cat or dog? (C/D)");
 
-        String animal;
-        do {
-            animal = scan.nextLine().toUpperCase();
-            if (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false) {
-                System.out.print("Invalid input. Please enter C or D: ");
+            String animal;
+            do {
+                animal = scan.nextLine().toUpperCase();
+                if (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false) {
+                    System.out.print("Invalid input. Please enter C or D: ");
+                }
+            } while (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false);
+
+            if (animal.toUpperCase().equals("C")) {
+                animalBase.AnimalName = "Cat";
+            } else if (animal.toUpperCase().equals("D")) {
+                animalBase.AnimalName = "Dog";
+            } else {
+                System.out.println("WHAT");
             }
-        } while (animal.toUpperCase().equals("C") == false && animal.toUpperCase().equals("D") == false);
 
-        if (animal.toUpperCase().equals("C")){
-            animalBase.AnimalName="Cat";
-        }
-        else if (animal.toUpperCase().equals("D")){
-            animalBase.AnimalName = "Dog";
-        }
-        else{
-            System.out.println("WHAT");
-        }
-
-        System.out.println("Enter on separate lines: name, owner-name, owner-phone, favourite food, number of times fed");
-        animalBase.setName(scan.nextLine());
-        ArrayList<Owner> owners = getOwners();
+            System.out.println("Enter on separate lines: name, owner-name, owner-phone, favourite food, number of times fed");
+            animalBase.setName(scan.nextLine());
+            ArrayList<Owner> owners = getOwners();
 
 
-        System.out.println("What is its favourite food?");
-        animalBase.setFavouriteFood(scan.nextLine());
+            System.out.println("What is its favourite food?");
+            animalBase.setFavouriteFood(scan.nextLine());
 
-        System.out.println("How many times is it fed a day? (as a number)");
-        int numTimes;
-        while (true) {
-            try {
-                numTimes = scan.nextInt();
-                break;
-            } catch (Exception e) {
-                System.out.print("Invalid input. Please enter a number: ");
-                scan.next();
+            System.out.println("How many times is it fed a day? (as a number)");
+            int numTimes;
+            while (true) {
+                try {
+                    numTimes = scan.nextInt();
+                    break;
+                } catch (Exception e) {
+                    System.out.print("Invalid input. Please enter a number: ");
+                    scan.next();
+                }
             }
-        }
-        scan.nextLine();
-        animalBase.setFeedsPerDay(numTimes);
-        for (Owner o : owners) {
-            animalBase.addOriginalOwner(o);
-        }
-        kennel.addAnimal(animalBase);
+            scan.nextLine();
+            animalBase.setFeedsPerDay(numTimes);
+            for (Owner o : owners) {
+                animalBase.addOriginalOwner(o);
+            }
+            kennel.addAnimal(animalBase);
 
-        switch (animal) {
-            case "C":
-                Cat newCat = new Cat(animalBase);
-                System.out.println("Can it share a run? (Y/N)");
-                newCat.sharesRuns = GetYesOrNo();
-                newCat.saveCat();
-                break;
-            case "D":
-                Dog newDog = new Dog(animalBase);
-                System.out.println("Does it like bones? (Y/N)");
-                newDog.likesBones = GetYesOrNo();
-                System.out.println("Does it need a walk? (Y/N)");
-                newDog.needsWalk = GetYesOrNo();
+            switch (animal) {
+                case "C":
+                    Cat newCat = new Cat(animalBase);
+                    System.out.println("Can it share a run? (Y/N)");
+                    newCat.sharesRuns = GetYesOrNo();
+                    newCat.saveCat();
+                    break;
+                case "D":
+                    Dog newDog = new Dog(animalBase);
+                    System.out.println("Does it like bones? (Y/N)");
+                    newDog.likesBones = GetYesOrNo();
+                    System.out.println("Does it need a walk? (Y/N)");
+                    newDog.needsWalk = GetYesOrNo();
 
-                System.out.println("Please enter any other diet info about the dog");
-                newDog.DietInfo = (scan.nextLine());
-                newDog.saveDog();
-                break;
+                    System.out.println("Please enter any other diet info about the dog");
+                    newDog.DietInfo = (scan.nextLine());
+                    newDog.saveDog();
+                    break;
+            }
         }
     }
 
