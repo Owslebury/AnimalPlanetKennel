@@ -268,23 +268,33 @@ public class KennelDemo {
             } else if (animal.toUpperCase().equals("D")) {
                 animalBase.AnimalName = "Dog";
             } else {
-                System.out.println("WHAT");
+                System.out.println("Please only enter a cat or dog");
             }
 
             System.out.println("Enter on separate lines: name, owner-name, owner-phone, favourite food, number of times fed");
             animalBase.setName(scan.nextLine());
+           while (animalBase.getName().isEmpty()){
+                System.out.println("Please enter something");
+               animalBase.setName(scan.nextLine());
+            }
             ArrayList<Owner> owners = getOwners();
 
 
             System.out.println("What is its favourite food?");
             animalBase.setFavouriteFood(scan.nextLine());
+            while (animalBase.getFavouriteFood().isEmpty()){
+                System.out.println("Please enter a favourite food");
+                animalBase.setFavouriteFood(scan.nextLine());
+            }
 
             System.out.println("How many times is it fed a day? (as a number)");
             int numTimes;
             while (true) {
                 try {
                     numTimes = scan.nextInt();
-                    break;
+                    if (numTimes > 0){
+                        break;
+                    }
                 } catch (Exception e) {
                     System.out.print("Invalid input. Please enter a number: ");
                     scan.next();
@@ -360,18 +370,36 @@ public class KennelDemo {
 
     private ArrayList<Owner> getOwners() {
         ArrayList<Owner> owners = new ArrayList<Owner>();
-        String answer;
+        Boolean answer;
         do {
             System.out
                     .println("Enter on separate lines: owner-name owner-phone");
             String ownName = scan.nextLine();
+            while (ownName.isEmpty()){
+                System.out.println("Please enter an owner name");
+                ownName = scan.nextLine();
+            }
             String ownPhone = scan.nextLine();
+            while (ownPhone.isEmpty() || isNumber(ownPhone) == false){
+                System.out.println("Please enter the owners phone number");
+                ownPhone = scan.nextLine();
+            }
             Owner own = new Owner(ownName, ownPhone);
             owners.add(own);
             System.out.println("Another owner (Y/N)?");
-            answer = scan.nextLine().toUpperCase();
-        } while (!answer.equals("N"));
+            answer = GetYesOrNo();
+        } while (answer == true);
         return owners;
+    }
+
+    public static boolean isNumber(String str){
+        try{
+            Double.parseDouble(str);
+            return true;
+        }catch (NumberFormatException e){
+            System.out.println("Please only enter a number");
+            return false;
+        }
     }
 
 
